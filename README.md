@@ -4,10 +4,14 @@ This repository contains the solution for the Superquantum iQuHACK 2026 Challeng
 
 ## Repository Structure
 
-- `solver.py`: The main script used to synthesize the target unitaries into Clifford+T QASM files.
-- `verify_all.py`: A wrapper script to verify all 11 tasks and report their performance metrics.
-- `verify_circuits.py`: Core logic for calculating operator norm distance and T-counts.
-- `task*.qasm`: Generated Clifford+T circuits for each of the 11 challenge tasks.
+## Repository Structure
+
+- `src/`: Core Python scripts for synthesis and verification.
+  - `solver.py`: The main script used to synthesize target unitaries.
+  - `verify_all.py`: Wrapper script to verify all 11 tasks.
+  - `verify_circuits.py`: Core logic for norm distance and T-count calculation.
+- `circuits/`: Generated Clifford+T QASM files for all 11 tasks.
+- `docs/`: Challenge description and PDF documentation.
 - `.gitignore`: Standard git ignore file to keep the repository clean.
 
 ## Getting Started
@@ -23,18 +27,18 @@ This repository contains the solution for the Superquantum iQuHACK 2026 Challeng
 
 ### Running the Solver
 
-To regenerate the Clifford+T circuits, run:
+To regenerate the Clifford+T circuits (outputs will be saved in `circuits/`), run:
 
 ```bash
-python3 solver.py
+python3 src/solver.py
 ```
 
 ### Verification
 
-To verify the generated circuits and see the performance statistics, run:
+To verify the generated circuits and see performance statistics, run:
 
 ```bash
-python3 verify_all.py
+python3 src/verify_all.py
 ```
 
 ## Performance Results

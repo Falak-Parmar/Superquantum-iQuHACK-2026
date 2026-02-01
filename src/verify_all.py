@@ -63,6 +63,7 @@ def get_target_unitary(idx):
     return None
 
 def verify_all():
+    import os
     tasks = [
         (1, "task1_cy.qasm"),
         (2, "task2_cry.qasm"),
@@ -80,12 +81,14 @@ def verify_all():
     print(f"{'Task':<8} | {'T-count':<10} | {'Norm Distance':<15}")
     print("-" * 40)
     
+    base_dir = os.path.join(os.path.dirname(__file__), "..", "circuits")
     for idx, filename in tasks:
+        filepath = os.path.join(base_dir, filename)
         target = get_target_unitary(idx)
         if target is None:
             if idx == 7:
                 psi_target = random_statevector(4, seed=42).data
-                qc = QuantumCircuit.from_qasm_file(filename)
+                qc = QuantumCircuit.from_qasm_file(filepath)
                 U = Operator(qc).data
                 psi_actual = U[:, 0]
                 fid = np.abs(np.vdot(psi_target, psi_actual))**2
@@ -96,7 +99,7 @@ def verify_all():
             else:
                 continue
         else:
-            dist, t_count = verify_unitary(filename, target, verbose=False)
+            dist, t_count = verify_unitary(filepath, target, verbose=False)
             print(f"{idx:<8} | {t_count:<10} | {dist:.6e}")
 
 if __name__ == "__main__":

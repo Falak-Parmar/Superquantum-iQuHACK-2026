@@ -57,7 +57,9 @@ def synthesize_unitary_2q(U, filename):
             q = qc_decomposed.find_bit(qargs[0]).index
             qasm_lines.extend(get_clifford_t_qasm(params, q))
             
-    with open(filename, "w") as f:
+    # Ensure circuits directory exists relative to this script
+    output_path = os.path.join(os.path.dirname(__file__), "..", "circuits", filename)
+    with open(output_path, "w") as f:
         f.write("\n".join(qasm_lines) + "\n")
 
 def get_h3_unitary(t):
@@ -150,7 +152,9 @@ def solve_all():
             p = [float(x) for x in instr.params]
             qasm11.extend(get_clifford_t_qasm(p, q_indices[0]))
             
-    with open("task11_diagonal.qasm", "w") as f:
+    # Ensure circuits directory exists relative to this script
+    output_path_diag = os.path.join(os.path.dirname(__file__), "..", "circuits", "task11_diagonal.qasm")
+    with open(output_path_diag, "w") as f:
         f.write("\n".join(qasm11) + "\n")
 
 if __name__ == "__main__":
