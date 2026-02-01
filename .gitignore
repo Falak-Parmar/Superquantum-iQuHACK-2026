@@ -9,3 +9,14 @@ __pycache__/
 ehthumbs.db
 Thumbs.db
 *.qasm.tmp
+
+# Experimental / Bonus Challenge Scripts
+analyze_bonus.py
+find_basis.py
+debug_stab.py
+test_cliff_pl.py
+test_cliff_pair.py
+test_cliff_mat.py
+check_cx.py
+diag_trace.py
+challenge_text.txt

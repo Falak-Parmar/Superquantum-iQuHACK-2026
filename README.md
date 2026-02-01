@@ -57,6 +57,27 @@ All tasks were verified using the operator norm distance metric and T-count calc
 | 10 | Random Unitary | 2.4678e-12 | 5126 |
 | 11 | 4-qubit Diagonal | 2.6346e-12 | 3660 |
 
+## Bonus Challenge: Commuting Pauli Phase Program
+
+The bonus challenge involved synthesizing a unitary represented by 255 commuting Pauli strings on 9 qubits, with phase rotation angles quantized to $\pi/8$.
+
+### Solution Overview
+
+1.  **Diagonalization**: We implemented a manual Clifford diagonalization algorithm using Gaussian elimination on the symplectic representation of the Pauli subgroup. A Clifford circuit $C$ was constructed to map the basis of the commuting subgroup to $Z$-basis parities.
+2.  **Phase Synthesis**: The diagonal phase rotations $\prod \exp(-i \frac{k_j \pi}{8} Z^{v_j})$ were implemented using CNOT ladders and Rz gates. Since $k_j \in \{1, 7\}$, each term translates to a single $T$ or $T^\dagger$ gate.
+3.  **Clifford+T Decomposition**: The final circuit $C^\dagger \text{Diag} C$ was transpiled to the $\{H, T, T^\dagger, CNOT\}$ gate set.
+
+### Running the Bonus Solver
+
+```bash
+python3 scripts/solve_bonus.py
+python3 scripts/verify_bonus.py
+```
+
+| Challenge | Desciption | Fidelity | T-count |
+| :--- | :--- | :--- | :--- |
+| Bonus | 255 Commuting Paulis | 1.0000 | 255 |
+
 ## Methodology
 
 1. **Decomposition**: 2-qubit unitaries are decomposed into CX and 1-qubit U3 gates using Qiskit's transpiler with level 3 optimization.
