@@ -4,8 +4,6 @@ This repository contains the solution for the Superquantum iQuHACK 2026 Challeng
 
 ## Repository Structure
 
-## Repository Structure
-
 - `src/`: Core Python scripts for synthesis and verification.
   - `solver.py`: The main script used to synthesize target unitaries.
   - `verify_all.py`: Wrapper script to verify all 11 tasks.
